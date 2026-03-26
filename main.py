@@ -1,15 +1,15 @@
-#=======https://openrouter.ai
+
 import requests
 import telebot
 import openai
 import time
 
-bot = telebot.TeleBot('BOT_API')
+bot = telebot.TeleBot('bot_api')
 
 
 client = openai.OpenAI(
     base_url="https://api.groq.com/openai/v1",
-    api_key="AI_api"
+    api_key="ai_api"
 )
 
 
@@ -26,12 +26,12 @@ def global_warming_fact(message):
 
     try:
         response = client.chat.completions.create(
-            model="moonshotai/kimi-k2-instruct-0905",
+            model="openai/gpt-oss-120b",
             messages=[
                 {"role": "system",
-                 "content": "Ты — помощник, который даёт только короткие факты (1-2 предложения) о глобальном потеплении. Отвечай на языке пользователя."},
+                 "content": "Ты — помощник, который даёт только короткие факты (2-3 предложения) о глобальном потеплении. Отвечай на языке пользователя."},
                 {"role": "user",
-                 "content": "Дай один короткий случайный факт о глобальном потеплении (не больше 2 предложений)."}
+                 "content": "Дай один короткий случайный факт о глобальном потеплении (не больше 3 предложений)."}
             ],
             temperature=0.7,
             timeout=20
@@ -53,7 +53,7 @@ def global_warming_fact(message):
 
     try:
         response = client.chat.completions.create(
-            model="moonshotai/kimi-k2-instruct-0905",
+            model="openai/gpt-oss-120b",
             messages=[
                 {"role": "system",
                  "content": "ты памошник для поиска интересных статей о глобальном потеплении"},
